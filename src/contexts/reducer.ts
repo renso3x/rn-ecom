@@ -1,4 +1,4 @@
-import { AuthState, AuthActions, AuthTypes } from '../types';
+import { AuthState, AuthActions, AuthTypes } from '../config/types';
 
 export const authReducer = (state: AuthState, action: AuthActions) => {
   switch (action.type) {
@@ -21,6 +21,12 @@ export const authReducer = (state: AuthState, action: AuthActions) => {
         ...state,
         isSignout: true,
         userToken: null,
+      };
+
+    case AuthTypes.AUTH_ERROR:
+      return {
+        ...state,
+        errMessage: action.message
       };
 
     default:

@@ -2,9 +2,8 @@ import React, { useState, useContext } from 'react';
 import { StyleSheet, SafeAreaView, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { AppContext } from '../contexts/AppContext';
-import { LoginProps, AuthTypes } from '../types';
-import { authenticate, getUserToken } from '../actions/login';
-import { Splash } from './Splash'
+import { LoginProps } from '../config/types';
+import { authenticate } from '../actions/login';
 
 const Login: React.SFC<LoginProps> = ({ navigation }) => {
   const { state: { auth }, dispatch } = useContext(AppContext);
@@ -12,36 +11,18 @@ const Login: React.SFC<LoginProps> = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    authenticate(dispatch);
-    navigation.navigate('Main');
+    authenticate({ email, password }, dispatch);
   };
 
   const handleRegister = () => {
     navigation.navigate('Register');
   };
 
-
   React.useEffect(() => {
-    // Fetch the token from storage then navigate to our appropriate place
-    const bootstrapAsync = async () => {
-      let userToken;
-
-      userToken = await getUserToken();
-      dispatch({ type: AuthTypes.RESTORE_TOKEN, token: 'sample-token' });
-    };
-
-    bootstrapAsync();
-  }, []);
-
-  if (auth.isLoading) {
-    return <Splash />;
-  }
-
-  console.log(auth.userToken)
-  if (auth.userToken) {
-    navigation.navigate('Main');
-    return null;
-  }
+    if (auth.userToken) {
+      return navigation.navigate('Main');
+    }
+  }, [auth]);
 
   return (
     <SafeAreaView style={styles.container}>

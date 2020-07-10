@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { authReducer } from './reducer';
-import { InitialStateType, AuthActions } from '../types';
+import { InitialStateType, AuthActions } from '../config/types';
 
 const initialState = {
   auth: {
     userToken: '',
     isLoading: true,
     isSignout: false,
+    errMessage: '',
   },
 };
 
