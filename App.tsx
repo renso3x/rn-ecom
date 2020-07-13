@@ -4,10 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-
 import { RootStackParamList, AuthTypes } from './src/config/types';
 import { AppProvider, AppContext } from './src/contexts/AppContext';
-import { getUserToken, clearData } from './src/actions/login';
+import { getUserToken } from './src/actions/login';
 
 
 import { Splash } from './src/screens/Splash';
@@ -23,7 +22,9 @@ function TabNavigator() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Product" component={Profile} />
+      <Tab.Screen name="Order" component={Profile} />
+      <Tab.Screen name="Account" component={Profile} />
     </Tab.Navigator>
   );
 }

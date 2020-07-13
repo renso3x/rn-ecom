@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { View, Text } from 'react-native';
-import { Button } from 'react-native-paper';
+import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { AppContext } from '../contexts/AppContext';
 import { logout } from '../actions/login';
+
+import AppBar from '../components/AppBar';
+import {SearchBar} from '../components/SearchBar';
 
 export interface Props {}
 
@@ -15,15 +17,13 @@ const Home: React.SFC<Props> = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-      <Button
-        onPress={handleLogout}
-        mode="contained"
-      >
-        Sign Out
-      </Button>
-    </View>
+    <SafeAreaView style={{ flex: 1}}>
+      <SearchBar />
+      <ScrollView
+        contentContainerStyle={{ flex: 1 }}>
+        <Text>Home!</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
