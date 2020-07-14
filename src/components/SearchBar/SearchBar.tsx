@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Image } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { COLORS } from '../../config/constants';
 
@@ -51,7 +51,7 @@ const SearchBar: React.SFC<Props> = () => {
         />
       </View>
       <IconButton
-        icon="cart"
+        icon={require('../../assets/ic-cart.png')}
         size={20}
         onPress={() => console.log('Pressed')}
       />

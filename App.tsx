@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -20,7 +21,29 @@ const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName = require('./src/assets/ic-home.png');
+
+          if (route.name === 'Product') {
+            iconName = require('./src/assets/ic-fashion.png');
+          }
+          if (route.name === 'Order') {
+            iconName = require('./src/assets/ic-list.png');
+          }
+          if (route.name === 'Account') {
+            iconName = require('./src/assets/ic-user.png');
+          }
+          // You can return any component that you like here!
+          return <Image source={iconName} style={{ tintColor: color }} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'black',
+        inactiveTintColor: 'gray',
+      }}
+    >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Product" component={Profile} />
       <Tab.Screen name="Order" component={Profile} />
