@@ -15,6 +15,7 @@ import { Login } from './src/screens/Login';
 import { Register } from './src/screens/Register';
 import { Home } from './src/screens/Home';
 import { Profile } from './src/screens/Profile';
+import { Products } from './src/screens/Products';
 
 const Stack = createStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
@@ -45,7 +46,7 @@ function TabNavigator() {
       }}
     >
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Product" component={Profile} />
+      <Tab.Screen name="Product" component={Products} />
       <Tab.Screen name="Order" component={Profile} />
       <Tab.Screen name="Account" component={Profile} />
     </Tab.Navigator>
